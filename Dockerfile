@@ -1,12 +1,13 @@
 FROM debian:wheezy
-MAINTAINER Ahmet Demir <ahmet2mir+github@gmail.com>
+#MAINTAINER Ahmet Demir <ahmet2mir+github@gmail.com>
+MAINTAINER Yifang Dai <yifangd+github@gmail.com>
 
 ENV RELEASE wheezy
 ENV DEBIAN_FRONTEND noninteractive
 ENV SHELL /bin/bash
 
 # Change sources.list to point on mirrors
-RUN echo "deb http://ftp.fr.debian.org/debian $RELEASE main contrib non-free" > /etc/apt/sources.list;\
+RUN echo "deb http://ftp.us.debian.org/debian $RELEASE main contrib non-free" > /etc/apt/sources.list;\
 	echo "deb http://ftp.debian.org/debian/ $RELEASE-updates main contrib non-free" >> /etc/apt/sources.list;\
 	echo "deb http://security.debian.org/ $RELEASE/updates main contrib non-free" >> /etc/apt/sources.list
 
@@ -20,6 +21,7 @@ CMD /usr/sbin/runsvdir-start
 
 # Utilities"
 RUN apt-get install -y vim less net-tools inetutils-ping curl git telnet nmap socat\
+    lftp htop atop \
     dnsutils netcat tree htop unzip sudo wget python-pip tmux cron sudo
 
 # Adding files
